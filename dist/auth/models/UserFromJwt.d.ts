@@ -1,9 +1,8 @@
+import { Perfil } from '@prisma/client';
 export declare class UserFromJwt {
     id: number;
     email: string;
     name: string;
-    status: string;
-    idempresa: number;
     idperfil: number;
-    perfil: string;
+    perfil: Perfil;
 }

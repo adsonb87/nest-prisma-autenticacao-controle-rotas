@@ -17,16 +17,16 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const user_module_1 = require("./user/user.module");
 const config_1 = require("@nestjs/config");
 const all_exceptions_filter_1 = require("./auth/errors/all-exceptions.filter");
+const auth_middleware_1 = require("./auth/middlewares/auth.middleware");
 let AppModule = exports.AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply(auth_middleware_1.AuthMiddleware).forRoutes('/api/v1/usuario');
+        consumer.apply(auth_middleware_1.AuthorizationMiddleware).forRoutes('/api/v1/usuario');
+    }
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            config_1.ConfigModule.forRoot(),
-            prisma_module_1.PrismaModule,
-            user_module_1.UserModule,
-            auth_module_1.AuthModule,
-        ],
+        imports: [config_1.ConfigModule.forRoot(), prisma_module_1.PrismaModule, user_module_1.UserModule, auth_module_1.AuthModule],
         controllers: [app_controller_1.AppController],
         providers: [
             app_service_1.AppService,

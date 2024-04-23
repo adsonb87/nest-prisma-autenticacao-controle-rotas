@@ -20,9 +20,7 @@ let LocalStrategy = exports.LocalStrategy = class LocalStrategy extends (0, pass
         this.authService = authService;
     }
     validate(email, password) {
-        console.log(email + " - " + password);
         const retService = this.authService.validateUser(email, password);
-        console.log(retService);
         return retService;
     }
 };

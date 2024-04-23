@@ -26,8 +26,6 @@ let JwtStrategy = exports.JwtStrategy = class JwtStrategy extends (0, passport_1
             id: payload.sub,
             email: payload.email,
             name: payload.name,
-            status: payload.status,
-            idempresa: payload.idempresa,
             idperfil: payload.idperfil,
             perfil: payload.perfil,
         };

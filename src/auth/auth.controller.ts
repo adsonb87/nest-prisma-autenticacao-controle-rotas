@@ -11,6 +11,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/AuthRequest';
 import { IsPublic } from './decorators/is-public.decorator';
 import { ApiTags } from '@nestjs/swagger';
+
 @ApiTags('Auth')
 @Controller('/api/v1')
 export class AuthController {

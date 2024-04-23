@@ -21,13 +21,10 @@ let AuthService = exports.AuthService = class AuthService {
         this.userService = userService;
     }
     async login(user) {
-        const empresa = user.empresa.map((item) => item.idempresa);
         const payload = {
             sub: user.id,
             email: user.email,
             name: user.name,
-            status: user.status,
-            idempresa: empresa,
             idperfil: user.idperfil,
             perfil: user.perfil,
         };

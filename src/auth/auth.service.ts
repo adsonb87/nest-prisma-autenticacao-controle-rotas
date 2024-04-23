@@ -16,23 +16,17 @@ export class AuthService {
   ) {}
 
   async login(user): Promise<UserToken> {
-    const empresa = user.empresa.map((item) => item.idempresa);
-
-    // console.log("user")
-    // console.log(user)
+    //console.log('user: ' + user);
 
     const payload: UserPayload = {
       sub: user.id,
       email: user.email,
       name: user.name,
-      status: user.status,
-      idempresa: empresa,
       idperfil: user.idperfil,
       perfil: user.perfil,
     };
 
-    // console.log("payload")
-    // console.log(payload)
+    //console.log('payload: ' + payload);
 
     return {
       access_token: this.jwtService.sign(payload),
@@ -41,13 +35,17 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<UserEntity> {
     if (!email || !password) {
-      throw new UnauthorizedError('Credenciais de login não fornecidas corretamente.');
+      throw new UnauthorizedError(
+        'Credenciais de login não fornecidas corretamente.',
+      );
     }
 
     const user = await this.userService.findByEmail(email);
 
     if (!user) {
-      throw new UnauthorizedError('Nenhum usuário encontrado com o email fornecido.');
+      throw new UnauthorizedError(
+        'Nenhum usuário encontrado com o email fornecido.',
+      );
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -59,6 +57,8 @@ export class AuthService {
       };
     }
 
-    throw new UnauthorizedError('O endereço de email ou a senha fornecida está incorreto.');
+    throw new UnauthorizedError(
+      'O endereço de email ou a senha fornecida está incorreto.',
+    );
   }
 }
