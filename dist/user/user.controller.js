@@ -168,7 +168,6 @@ __decorate([
 ], UserController.prototype, "getMe", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, is_public_decorator_1.IsPublic)(),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     openapi.ApiResponse({ status: common_1.HttpStatus.OK }),
     __metadata("design:type", Function),

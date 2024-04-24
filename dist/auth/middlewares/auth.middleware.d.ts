@@ -9,3 +9,8 @@ export declare class AuthorizationMiddleware implements NestMiddleware {
         user: UserPayload;
     }, res: Response, next: NextFunction): void;
 }
+export declare class AuthorizationMiddlewarePerifs implements NestMiddleware {
+    use(req: Request & {
+        user: UserPayload;
+    }, res: Response, next: NextFunction): void;
+}

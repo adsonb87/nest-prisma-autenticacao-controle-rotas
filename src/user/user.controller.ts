@@ -90,7 +90,6 @@ export class UserController {
   }
 
   @Get()
-  @IsPublic()
   @HttpCode(HttpStatus.OK)
   async findAll() {
     try {

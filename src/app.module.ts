@@ -12,11 +12,13 @@ import { AllExceptionsFilter } from './auth/errors/all-exceptions.filter';
 import {
   AuthMiddleware,
   AuthorizationMiddleware,
+  AuthorizationMiddlewarePerifs,
 } from './auth/middlewares/auth.middleware';
+import { RotasController } from './rotas/rotas.controller';
 
 @Module({
   imports: [ConfigModule.forRoot(), PrismaModule, UserModule, AuthModule],
-  controllers: [AppController],
+  controllers: [AppController, RotasController],
   providers: [
     AppService,
     {
@@ -32,7 +34,8 @@ import {
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     //consumer.apply(AuthMiddleware).forRoutes(''); // Aplica a todos os endpoints
-    consumer.apply(AuthMiddleware).forRoutes('/api/v1/usuario');
+    consumer.apply(AuthMiddleware).forRoutes('');
     consumer.apply(AuthorizationMiddleware).forRoutes('/api/v1/usuario'); // Aplica somente às rotas do UserController
+    consumer.apply(AuthorizationMiddlewarePerifs).forRoutes('/api/v1/rotas'); // Aplica somente às rotas do UserController
   }
 }
